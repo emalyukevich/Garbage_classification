@@ -35,11 +35,8 @@ docker-compose.yml
 *.pth
 *.pt
 
-data/
 datasets/
 checkpoints/
-
-examples/
 
 # Тесты
 tests/

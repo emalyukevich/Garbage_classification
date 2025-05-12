@@ -57,12 +57,3 @@ def create_model(num_classes: int, device: str = "cuda" if torch.cuda.is_availab
     """
     model = EfficientNetClassifier(num_classes)
     return model.to(device)
-
-
-# Пример тестирования модели
-if __name__ == "__main__":
-    model = create_model(num_classes=6)
-    x = torch.randn((2, 3, 224, 224))
-    out = model(x)
-    print(out.shape)  # -> torch.Size([2, 6])
-

@@ -35,11 +35,11 @@ def overlay_prediction(image_path, prediction, save_path):
     draw = ImageDraw.Draw(image)
 
     try:
-        font = ImageFont.truetype("arial.ttf", size=24)
+        font = ImageFont.truetype("arial.ttf", size=100)
     except:
         font = ImageFont.load_default()
 
-    draw.text((10, 10), f"Prediction: {prediction}", font=font, fill=(255, 0, 0))
+    draw.text((60, 10), f"Prediction: {prediction}", font=font, fill=(255, 0, 0))
     image.save(save_path)
 
 if __name__ == "__main__":
