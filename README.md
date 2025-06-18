@@ -1,139 +1,138 @@
 # 🗑️ Garbage Classification API
 
-> **Автоматическая классификация изображений мусора с помощью модели EfficientNet-B0, развернутая в виде REST API на FastAPI.**
+> **Automatic image classification of waste using EfficientNet-B0, deployed as a REST API with FastAPI.**
 
 ---
 
-## 📌 Описание проекта
+## 📌 Project Overview
 
-Garbage Classification API — это полноценный pet-проект, направленный на решение задачи устойчивой переработки мусора при помощи компьютерного зрения. Пользователь может отправить изображение, и модель классифицирует его в один из заданных классов (например: `plastic`, `glass`, `metal`, `paper` и т.д.).
+Garbage Classification API is a complete pet project focused on solving the problem of sustainable waste sorting using computer vision. A user can upload an image, and the model will classify it into one of the predefined categories (e.g., `plastic`, `glass`, `metal`, `paper`, etc.).
 
-Проект демонстрирует **полный цикл разработки ML-приложения**: от подготовки данных и обучения модели до деплоя API и визуализации предсказаний.
-
----
-
-## 🎯 Цели и применение
-
-- 💡 Обучение и демонстрация навыков в области **Data Science + MLOps**
-- ♻️ Потенциальное применение в **экологических проектах** и **сортировке мусора**
-- 📱 Может быть интегрирован в мобильные или IoT-решения для распознавания мусора в реальном времени
-- 🧪 Отличный кейс для портфолио Junior/Middle Data Scientist / ML Engineer
+The project demonstrates the **entire lifecycle of an ML application** — from data preparation and model training to API deployment and prediction visualization.
 
 ---
 
-## 🧠 Демонстрируемые навыки
+## 🎯 Goals and Applications
 
-| Направление           | Навыки                                                                 |
-|-----------------------|------------------------------------------------------------------------|
-| **Data Science**      | Подготовка данных, EDA, аугментации, обучение модели EfficientNet-B0  |
-| **Machine Learning**  | Transfer Learning, Fine-tuning, EarlyStopping, оценка метрик качества |
-| **Deployment**        | Разработка REST API (FastAPI), Docker-контейнеризация, Uvicorn        |
-| **Software Dev**      | Работа с `requirements.txt`, структура проекта, обработка ошибок      |
-| **Инженерия**         | Обработка файлов, overlay предсказаний, логгирование и отладка        |
+- 💡 Learn and showcase skills in **Data Science + MLOps**
+- ♻️ Potential use in **environmental projects** and **waste sorting systems**
+- 📱 Can be integrated into mobile or IoT solutions for real-time garbage recognition
+- 🧪 Great portfolio project for a Junior/Middle Data Scientist or ML Engineer
 
 ---
 
-## ⚙️ Используемые технологии
+## 🧠 Demonstrated Skills
+
+| Area                 | Skills                                                                      |
+|----------------------|-----------------------------------------------------------------------------|
+| **Data Science**     | Data preparation, EDA, augmentation, training EfficientNet-B0               |
+| **Machine Learning** | Transfer Learning, Fine-tuning, EarlyStopping, performance metrics          |
+| **Deployment**       | REST API development (FastAPI), Docker containerization, Uvicorn            |
+| **Software Dev**     | Working with `requirements.txt`, clean project structure, error handling    |
+| **Engineering**      | File processing, prediction overlay, logging, debugging                     |
+
+---
+
+## ⚙️ Technologies Used
 
 - **Python 3.10**
-- **PyTorch** — для обучения и инференса модели
-- **EfficientNet-B0** — сверточная нейросеть с отличным балансом скорости и точности
-- **Albumentations** — мощный фреймворк для аугментаций изображений
-- **FastAPI** — современный веб-фреймворк для создания REST API
-- **Uvicorn** — ASGI-сервер для запуска FastAPI-приложения
-- **Docker** — упаковка и деплой проекта в виде контейнера
-- **Pillow (PIL)** — для работы с изображениями, включая отрисовку предсказаний
-- **requests** — для тестирования и взаимодействия с API
+- **PyTorch** — for model training and inference
+- **EfficientNet-B0** — a CNN architecture with an excellent speed/accuracy tradeoff
+- **Albumentations** — a powerful library for image augmentation
+- **FastAPI** — a modern web framework for building REST APIs
+- **Uvicorn** — an ASGI server for running FastAPI applications
+- **Docker** — for packaging and deploying the project in a container
+- **Pillow (PIL)** — for image handling and drawing predictions
+- **requests** — for testing and interacting with the API
 
 ---
 
-## 🖼️ Визуализация и генерация предсказаний
+## 🖼️ Prediction Visualization
 
-В проект встроен интерфейс `/view_examples`, где отображаются изображения из валидационного набора с наложенными предсказаниями модели. Также реализован автоматизированный скрипт `generate_examples.py`, который:
+The project includes an interface at `/view_examples` that displays validation images with model predictions overlaid. An automated script `generate_examples.py` is also included, which:
 
-1. Случайно выбирает изображения из `data/val/`
-2. Отправляет их в API
-3. Накладывает текст с предсказанием
-4. Сохраняет результат в `examples/`
-
----
-
-## 📦 Структура проекта
-
-Garbage_classification/
-├── app/                   # FastAPI-приложение
-│   ├── main.py            # Точка входа FastAPI
-│   ├── model.py           # Загрузка и инференс модели
-│   ├── utils.py           # Хелперы
-│   ├── config.py          # Пути и конфигурация
-│   ├──	examples/          # Изображения с предсказаниями
-│   └── generate_examples.py # Скрипт генерации изображений с предсказаниями
-│
-├── data/                  # Данные
-├── models/                # Файлы обученных моделей (.pth)
-├── notebooks/             # Исследования и анализ
-├── src/                   # Исходный код обучения модели
-├── requirements.txt       # Python-зависимости
-├── Dockerfile             # Docker-инструкция
-└── README.md              # Документация
+1. Randomly selects images from `data/val/`
+2. Sends them to the API
+3. Overlays the predicted label on the image
+4. Saves the result to the `examples/` folder
 
 ---
 
-## 🛠️ Возможности API
-
-| Метод     | Endpoint           | Описание                                      |
-|-----------|--------------------|-----------------------------------------------|
-| `POST`    | `/predict`         | Классификация изображения                     |
-| `GET`     | `/view_examples`   | Просмотр предсказаний на изображениях         |
-
----
-
-## 🚀 Инструкция по запуску
-
-### 🔧 1. Установка зависимостей и локальный запуск
+## 📦 Project Structure
 
 ```bash
-# Клонируйте репозиторий
+Garbage_classification/
+├── app/                   # FastAPI application
+│   ├── main.py            # FastAPI entry point
+│   ├── model.py           # Model loading and inference
+│   ├── utils.py           # Utility functions
+│   ├── config.py          # Paths and configuration
+│   ├──	examples/          # Images with predictions
+│   └── generate_examples.py # Script for generating predictions on images
+│
+├── data/                  # Dataset
+├── models/                # Trained model files (.pth)
+├── notebooks/             # Data analysis and experiments
+├── src/                   # Model training source code
+├── requirements.txt       # Python dependencies
+├── Dockerfile             # Docker instructions
+└── README.md              # Project documentation
+
+```
+
+---
+
+## 🛠️ API Endpoints
+
+| Method   | Endpoint         | Description                              |
+|----------|------------------|------------------------------------------|
+| `POST`   | `/predict`       | Image classification                     |
+| `GET`    | `/view_examples` | View predictions on sample images        |
+
+---
+
+## 🚀 Getting Started
+
+### 🔧 1. Install dependencies and run locally
+
+```bash
+# Clone the repository
 git clone https://github.com/emalyukevich/Garbage_classification.git
 cd garbage_classification
 
-# Активируйте виртуальное окружение (рекомендуется)
+# (Optional but recommended) Create a virtual environment
 python3 -m venv venv
-source venv/bin/activate  # для Linux/macOS
-venv\Scripts\activate     # для Windows
+source venv/bin/activate  # For Linux/macOS
+venv\Scripts\activate     # For Windows
 
-# Установите зависимости
+# Install dependencies
 pip install --upgrade pip
 pip install -r requirements.txt
 
-# Запуск FastAPI-приложения
+# Run FastAPI app
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 
-После запуска откройте браузер и перейдите по адресу: http://127.0.0.1:8000/docs
-Там доступна Swagger-документация для тестирования API.
+Once started, open your browser at: http://127.0.0.1:8000/docs
+The Swagger UI will be available for testing the API.
 
-### 🐳 2. Запуск с использованием Docker
+### 🐳 2. Run using Docker
 
 ```bash
-# Сборка контейнера
+# Build the container
 docker build -t garbage-api .
 
-# Запуск контейнера
+# Run the container
 docker run -d -p 8000:8000 --name garbage_container garbage-api
 
-# Проверьте, что контейнер работает:
+# Check if the container is running
 docker ps
 
-# Теперь API доступен по адресу:
-http://localhost:8000/docs
-
-### 🧹 3. Очистка Docker (если потребуется)
+### 🧹 3. Clean up Docker (if needed)
 
 ```bash
-# Остановить и удалить контейнер
+# Stop and remove the container
 docker stop garbage_container
 docker rm garbage_container
 
-# Удалить образ
+# Remove the image
 docker rmi garbage-api
-
